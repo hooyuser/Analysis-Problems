@@ -1,0 +1,372 @@
+\documentclass[11pt,a4paper,openany,oneside]{book}
+
+
+
+\usepackage[UTF8]{ctex}
+
+\usepackage{amsmath,amssymb,mathdots}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+%\usepackage{geometry}
+
+%页眉
+\usepackage{bookmark}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\renewcommand{\headwidth}{\textwidth}
+
+\pagestyle{fancy}                       
+\renewcommand{\headrulewidth}{0.5pt}
+\fancyhf{}                                                
+\fancyhead[LE,RO]{\thepage}                      
+\fancyhead[RE]{\leftmark}                               
+\fancyhead[LO]{\rightmark}
+
+\fancypagestyle{plain}{
+	\fancyhf{}                               
+	\renewcommand{\headrulewidth}{0.5pt}                              
+	\fancyhead[LE,RO]{\thepage}                         
+	\fancyhead[RE]{\leftmark}                               
+	\fancyhead[LO]{\rightmark} 
+}
+
+\newcommand{\headodd}[2]{\fancypagestyle{myplain}{% 
+		\fancyhf{} %  
+		\pagestyle{fancy}                              
+		\renewcommand{\headrulewidth}{0.5pt}                                    
+		\fancyhead[LE,RO]{\thepage}                        
+		\fancyhead[RE]{\leftmark} 
+		\hypersetup{   
+			colorlinks=false,
+			pdfborder={0 0 0},
+		}                            
+		\fancyhead[LO]{ \ref{#1} #2}  %#1表示label, #2表示节名
+	}
+	\thispagestyle{myplain}
+}
+
+
+
+
+%定义分数线
+
+%\geometry{left=6.0cm, right=3.0cm, top=3.5cm, bottom=2.5cm}
+\setlength{\parindent}{0pt}
+%\renewcommand{\baselinestretch}{1.2}
+\newcommand\chfrac[2]{\frac{\;#1\;}{\;#2\;}}
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+	\edef\arraystretch{#1}%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{*\c@MaxMatrixCols c}}
+\makeatother
+\usepackage{arydshln}
+\usepackage{galois}
+
+%定理
+\usepackage{lipsum}
+\usepackage[many]{tcolorbox}
+
+\definecolor{greentitle}{RGB}{61,170,61}
+\definecolor{greentitleback}{RGB}{216,233,213}
+%[
+%auto counter,
+%number within=section
+%]
+\newtcolorbox{myexample}[2][]{%
+	breakable,
+	enhanced,
+	colback=white,
+	colbacktitle=white,
+	arc=0pt,
+	leftrule=1.4pt,
+	rightrule=0pt,
+	toprule=0pt,
+	bottomrule=0pt,
+	titlerule=-16pt,
+	colframe=greentitleback,
+	fonttitle=\normalcolor,
+	overlay={
+		\node[
+		outer sep=0pt,
+		anchor=east,
+		text width=2.2cm,
+		minimum height=4ex,
+		fill=greentitleback,
+		font=\color{greentitle}\sffamily\scshape
+		] at (title.west) {problem};
+	},
+	title=#2,
+    #1
+}
+\newcommand\Solution{\noindent\textbf{\textsf{Solution}}\par\medskip}
+
+
+
+
+%%%%%%%%%%%
+
+\usepackage{tikz}
+\usepackage{titletoc}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{times}
+
+\definecolor{doc}{RGB}{61,170,61}
+\definecolor{myblueii}{RGB}{119,136,153}
+
+%~~~~~~~~~~~~~~~~~Hyperref Settings~~~~~~~~~~~~~~~~~~~~~~
+
+\hypersetup{%
+	pdfborder = {0 0 0},
+	colorlinks,
+	citecolor=red,
+	filecolor=green,
+	linkcolor=myblueii,
+	urlcolor=cyan!50!black!90
+}
+
+%~~~~~~~~~~~~~~~~~~~~~Fancy ToC~~~~~~~~~~~~~~~~~~~~~~
+
+\contentsmargin{0cm}
+\titlecontents{chapter}[0pc]
+{\addvspace{30pt}%
+	\begin{tikzpicture}[remember picture, overlay]%
+	\draw[fill=myblueii,draw=myblueii, rounded corners] (-4,-.1) rectangle (-0.15,.5);%
+	\pgftext[left,x=-2.7cm,y=0.2cm]{\color{white}\Large \chaptertitlename\ \thecontentslabel};%
+	\end{tikzpicture}\color{myblueii}\large\bfseries}%
+{}
+{}
+{\hspace*{6pt}\titlerule\hspace*{6pt}\large\bfseries \thecontentspage
+	\begin{tikzpicture}[remember picture, overlay]
+	\draw[fill=doc!25,draw=myblueii, rounded corners=0pt] (2pt,0) rectangle (6,0.1pt);
+	\end{tikzpicture}}%
+\titlecontents{section}[2.4pc]
+{\addvspace{1pt}}
+{\contentslabel[\thecontentslabel]{2.4pc}}
+{}
+{\hfill\small \thecontentspage}
+[]
+\titlecontents{subsection}[4.8pc]
+{\addvspace{1.0pt}}
+{\contentslabel[\thecontentslabel]{2.4pc}}
+{}
+{\hfill\small\thecontentspage}
+[]
+
+\makeatletter
+\renewcommand{\tableofcontents}{%
+	\chapter*{%
+		\vspace*{-20\p@}%
+		\begin{tikzpicture}[remember picture, overlay]%
+		\pgftext[right,x=15cm,y=0.2cm]{\color{myblueii}\Huge \contentsname};%
+		\draw[fill=myblueii,draw=myblueii, rounded corners=15pt] (13,-.75) rectangle (20,1);%
+		\clip (13,-.75) rectangle (20,1);
+		\pgftext[right,x=15cm,y=0.2cm]{\color{white}\Huge \contentsname};%
+		\end{tikzpicture}}%
+	\@starttoc{toc}}
+\makeatother
+
+
+
+ \usepackage{graphicx} 
+ \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+ 
+%~~~~~~~~~~~~~~~~~Main Document~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+
+\begin{titlepage}
+	
+	\begin{center}
+		
+		
+		% Upper part of the page
+		    
+		
+		%\textsc{\LARGE University of Beer}\\[1.5cm]
+		
+		%\textsc{\Large Final year project}\\[0.5cm]
+		
+		
+		% Title
+		\HRule \\[1cm]
+		{ \Huge \bfseries 数学分析杂题}\\[0.5cm]
+		
+		\HRule \\[1.5cm]
+		
+		% Author and supervisor
+		%\begin{minipage}{0.4\textwidth}
+			%\begin{flushleft} \large
+				%\emph{Author:}\\
+		%		John \textsc{Smith}
+		%	\end{flushleft}
+		%\end{minipage}
+		\begin{minipage}{0.9\textwidth}
+			\begin{flushright} \large
+				\LARGE\emph{整理}: 
+				\textsc{\huge Chen}
+			\end{flushright}
+		\end{minipage}
+
+	    \vfill
+		
+		
+		
+		%\includegraphics[width=0.048\textwidth]{./logo}%\\[6cm]
+		% Bottom of the page
+%{\hspace{5em}\Large\today\hspace{3em}}
+	%\includegraphics[width=0.048\textwidth]{./logo}%\\[6cm]
+	\end{center}
+	
+	\end{titlepage}
+
+
+{   
+	\hypersetup{hidelinks}
+	\tableofcontents% 
+}
+\thispagestyle{empty}
+
+
+\part{上册}
+
+
+\chapter{级数}
+\section{Demo}
+
+
+
+\begin{myexample}
+\textbf{1.} 
+证明 $\sum\limits_{m=0}^{\infty}\dfrac{1}{(2m+1)^2}=\dfrac{\pi^2}{8}$.
+\end{myexample}
+
+\Solution
+
+
+当 $0<x<1$ 时, 作代换 $\sqrt{1-x^2 \sin ^2\theta }=u\in[\sqrt{1-x^2},1]$, 即 $\theta=\arcsin\dfrac{\sqrt{1-u^2}}{x}$, 于是
+\begin{align*}
+\int_{0}^{\frac{\pi}{2}}\frac{\sin\theta }{\sqrt{1-x^2 \sin ^2\theta }}d\theta&=\int_{1}^{\sqrt{1-x^2}}\frac{-2}{x\sqrt{u^2-(1-x^2)}}du\\
+&=\frac{1}{x}\int_{\sqrt{1-x^2}}^{1}\frac{1}{\sqrt{u^2-(1-x^2)}}du\\
+&=\frac{1}{x}\left[\ln\left|u+\sqrt{u^2-(1-x^2)}\right|\right]_{\sqrt{1-x^2}}^{1}\\
+&=\frac{1}{x}\left(\ln(1+x)-\ln\sqrt{1-x^2}\right)\\
+&=\frac{1}{2x}\ln(1+x)-\frac{1}{2x}\ln(1-x)\\
+&=\frac{1}{2x}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}x^{n}}{n}-\frac{1}{2x}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}(-x)^{n}}{n}\\
+&=\sum_{n=1}^{\infty}\frac{(-1)^{n-1}x^{n-1}+x^{n-1}}{2n}\quad(\text{令}\,n=2m+1)\\
+&=\sum_{m=0}^{\infty}\frac{x^{2m}}{2m+1}\quad(0<x<1).
+\end{align*}
+当 $x=0$ 时, 
+\[
+\int_{0}^{\frac{\pi}{2}}\frac{\sin\theta }{\sqrt{1-x^2 \sin ^2\theta }}d\theta=\sum_{m=0}^{\infty}\frac{x^{2m}}{2m+1}
+\]
+仍然成立.
+考虑瑕点为 $x=1$ 的广义积分, 有
+\begin{align}
+\int_{0}^{1}dx\int_{0}^{\frac{\pi}{2}}\frac{\sin\theta }{\sqrt{1-x^2 \sin ^2\theta }}d\theta&=\int_{0}^{1}\sum_{m=0}^{\infty}\frac{x^{2m}}{2m+1} dx\\
+&=\lim_{t\to 1^-}\int_{0}^{t}\sum_{m=0}^{\infty}\frac{x^{2m}}{2m+1} dx\\
+&=\lim_{t\to 1^-}\sum_{m=0}^{\infty}\int_{0}^{t}\frac{x^{2m}}{2m+1} dx\\
+&=\lim_{t\to 1^-}\sum_{m=0}^{\infty}\frac{t}{(2m+1)^2} \\
+&=\sum_{m=0}^{\infty}\lim_{t\to 1^-}\frac{t}{(2m+1)^2} \\
+&=\sum_{m=0}^{\infty}\frac{1}{(2m+1)^2}.
+\end{align}
+
+另一方面, 
+\begin{align*}
+\int_{0}^{\frac{\pi}{2}}d\theta\int_{0}^{1}\frac{\sin\theta }{\sqrt{1-x^2 \sin ^2\theta }}dx
+=\int_{0}^{\frac{\pi}{2}}\left[\arcsin(x\sin\theta)\right]_0^1d\theta
+=\int_{0}^{\frac{\pi}{2}}\theta d\theta=\frac{\pi^2}{8}	.
+\end{align*}
+
+这表明
+\[\sum\limits_{n=1}^{\infty}\dfrac{1}{(2n-1)^2}=\dfrac{\pi^2}{8}.\]
+
+~\\
+
+\textbf{注 1}：由 1.2 式至 1.3 式交换了积分号与求和号, 这里逐项积分的合法性由幂级数 \[\sum\limits_{m=0}^{\infty}\dfrac{x^{2m}}{2m+1}\]
+在 $[0,t]$ 上一致收敛所保证. 事实上, 该幂级数的收敛域为 $(-1,1)$. 注意到在 $t\to 1^{-}$ 时有 $t<1$, 由 Abel 第二定理可知幂级数于其收敛域中内闭一致收敛.\\
+~\\
+\textbf{注 2}：由 1.4 式至 1.5 式交换了极限符号与求和号. 为此, 我们可以验证以 $t$ 为变元的级数
+\[
+\sum_{m=0}^{\infty}\frac{t}{(2m+1)^2}
+\]
+在 $[0,2]$ 上一致收敛. 因为
+\[
+\sum_{m=0}^{\infty}\frac{t}{(2m+1)^2}\le\sum_{m=0}^{\infty}\frac{3}{(2m+1)^2}\le3+\sum_{m=1}^{\infty}\frac{3}{(2m-1)(2m+1)}<6,
+\]
+运用 Weierstrass 判别法即可得到证明.
+~\\
+~\\
+
+\textbf{另证:}\\
+我们另外给出一个证明, 作为对极限交换技巧的一种展示.\\
+定义双阶乘记号
+\[
+(2n-1)!!=(2n-1)(2n-3)\cdots3\cdot1,
+\]
+\[
+(2n)!!=(2n)(2n-2)\cdots4\cdot2.
+\]
+写出 $(1+z)^{-\frac{1}{2}}$ 在 $z=0$ 处的 Taylor 级数展开式
+\begin{align*}
+(1+z)^{-\frac{1}{2}}&=1+\frac{-\frac{1}{2}}{1!}z+\frac{(-\frac{1}{2})(-\frac{1}{2}-1)}{2!}z^2+\frac{(-\frac{1}{2})(-\frac{1}{2}-1)(-\frac{1}{2}-2)}{3!}z^3+\cdots\\
+&=1+\sum_{n=1}^{\infty}\frac{(-\frac{1}{2})(-\frac{3}{2})\cdots(-\frac{1}{2}-n+1)}{n!}z^n\\
+&=1+\sum_{n=1}^{\infty}\frac{(-1)^n(2n-1)!!}{2^n n!}z^n\\
+&=1+\sum_{n=1}^{\infty}\frac{(-1)^n(2n-1)!!}{(2n)!!}z^n\quad (-1<z\le 1).
+\end{align*}
+
+
+令 $z=-x^2 \sin ^2\theta$, 则得到 $f(x)=\frac{\sin\theta }{\sqrt{1-x^2 \sin ^2\theta }}$ 在 $x=0$ 处的 Taylor 级数展开式
+\begin{align*}
+\frac{\sin\theta }{\sqrt{1-x^2 \sin ^2\theta }}&=\sin\theta\left(1+\sum_{n=1}^{\infty}\frac{(-1)^n(2n-1)!!}{(2n)!!}(-x^2 \sin ^2\theta)^n\right)\\
+&=\sin\theta+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n)!!}x^{2n} \sin ^{2n+1}\theta\quad(-1<x<1).
+\end{align*}
+
+进一步有
+
+\begin{align}
+&\int_{0}^{\frac{\pi}{2}}d\theta\int_{0}^{1}\frac{\sin\theta }{\sqrt{1-x^2 \sin ^2\theta }}dx\\
+=&\int_{0}^{\frac{\pi}{2}}d\theta\lim_{t\to 1^-}\int_{0}^{t}\left(\sin\theta+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n)!!}x^{2n} \sin ^{2n+1}\theta\right)dx\\
+=&\int_{0}^{\frac{\pi}{2}}d\theta\lim_{t\to 1^-}\left(\int_{0}^{t}\sin\theta dx+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n)!!}\sin ^{2n+1}\theta\int_{0}^{t}x^{2n}dx \right)\\
+=&\int_{0}^{\frac{\pi}{2}}\left(\sin\theta+\lim_{t\to 1^-}\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n+1)(2n)!!}t^{2n+1} \sin ^{2n+1}\theta\right)d\theta\\
+=&\int_{0}^{\frac{\pi}{2}}\left(\sin\theta+\sum_{n=1}^{\infty}\lim_{t\to 1^-}\frac{(2n-1)!!}{(2n+1)(2n)!!}t^{2n+1} \sin ^{2n+1}\theta\right)d\theta\\
+=&\int_{0}^{\frac{\pi}{2}}\left(\sin\theta+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n+1)(2n)!!}\sin ^{2n+1}\theta\right)d\theta\\
+=&\int_{0}^{\frac{\pi}{2}}\sin\theta d\theta+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n+1)(2n)!!} \int_{0}^{\frac{\pi}{2}}\sin ^{2n+1}\theta d\theta\\
+=&1+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n+1)(2n)!!} \frac{(2n)!!}{(2n+1)!!}\\
+=&1+\sum_{n=1}^{\infty}\frac{1}{(2n+1)^2}\\
+=&\sum\limits_{m=0}^{\infty}\dfrac{1}{(2m+1)^2}.
+\end{align}
+
+接着证明上述所有交换极限的行为都是合理的.
+
+\begin{enumerate}[I.]
+\item (1.8) 至 (1.9). 运用 Cauchy 根值判别法以及 Wallis 公式, 可得 $|x|<1$ 时,
+\[
+\rho=1\Bigg/\,\overline{\lim\limits_{n\to\infty}}\sqrt[^{^{^n}}]{\frac{(2n-1)!!}{(2n)!!} \sin ^{2n+1}\theta}=1\Bigg/\,\overline{\lim\limits_{n\to\infty}}\sqrt[^{^{^n}}]{\frac{\sin^{2n+1}\theta}{\sqrt{n\pi}}}=\frac{1}{\sin^{2}\theta}\ge1,
+\] 
+因此 $\sum\limits_{n=1}^{\infty}\frac{(2n-1)!!}{(2n)!!}x^{2n} \sin ^{2n+1}\theta$ 在 $(-1,1)$ 上收敛, 从而在 $[0,t]$ 上一致收敛.
+
+\item (1.10) 至 (1.11). 当 $t\in[0,1]$ 时, 以 $t$ 为变元的幂级数
+\[
+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n+1)(2n)!!}t^{2n+1}\sin^{2n+1}\theta\le\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n+1)(2n)!!}=\frac{\pi}{2}-1
+\]
+满足 Weierstrass 判别法的条件, 因此 $\sum\limits_{n=1}^{\infty}\frac{(2n-1)!!}{(2n+1)(2n)!!}t^{2n+1}\sin^{2n+1}\theta$ 在 $[0,1]$ 上一致收敛.
+
+\item (1.12) 至 (1.13). 同理, 根据 Weierstrass 判别法
+\[
+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n+1)(2n)!!}\sin ^{2n+1}\theta
+\]
+在 $\left[0,\dfrac{\pi}{2}\right]$ 上一致收敛. 
+\end{enumerate}
+
+之后的证明是相同的.
+
+
+
+
+
+
+
+\end{document}
